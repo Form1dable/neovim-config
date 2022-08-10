@@ -2,7 +2,7 @@
 -- General
 vim.opt.relativenumber = true			-- enables relative numbers
 vim.opt.clipboard = "unnamedplus"		-- allows neovim to access the system clipboard
-vim.opt.cmdheight = 2				-- more space in the neovim commandline for displaying message
+vim.opt.cmdheight = 1				-- more space in the neovim commandline for displaying message
 vim.opt.completeopt = { "menuone", "noselect" } -- mostly just for cmp
 vim.opt.conceallevel = 0			-- so that `` is visible in markdown files
 vim.opt.fileencoding = "utf-8"			-- the encoding written to a file

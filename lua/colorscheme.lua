@@ -1,6 +1,6 @@
 -- vim.cmd "colorscheme default"
 
-local colorscheme = "onenord"
+local colorscheme = "darkplus"
 
 local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)  -- pcall is a protected call, underscore is the returned value of the module
 
