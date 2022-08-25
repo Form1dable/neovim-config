@@ -63,6 +63,7 @@ cmp.setup({
 	-- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
 	vim_item.menu = ({
 	  luasnip = "[Snippet]",
+	  nvim_lsp = "[LSP]",
 	  buffer = "[Buffer]",
 	  path = "[Path]",
 	})[entry.source.name]
@@ -82,13 +83,38 @@ cmp.setup({
 	['<C-Space>'] = cmp.mapping.complete(),
 	['<C-e>'] = cmp.mapping.abort(),
 	['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+	    ["<Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif luasnip.expandable() then
+        luasnip.expand()
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+      elseif check_backspace() then
+        fallback()
+      else
+        fallback()
+      end
+    end, {
+      "i",
+      "s",
+    }),
+    ["<S-Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    end, {
+      "i",
+      "s",
+    }),
   }),
   sources = cmp.config.sources({
 	{ name = 'nvim_lsp' },
-	--{ name = 'vsnip' }, -- For vsnip users.
 	{ name = 'luasnip' }, -- For luasnip users.
-	-- { name = 'ultisnips' }, -- For ultisnips users.
-	-- { name = 'snippy' }, -- For snippy users.
   }, {
 	{ name = 'buffer' },
   })
@@ -123,8 +149,8 @@ cmp.setup.cmdline(':', {
 })
 
 -- Setup lspconfig.
---  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
---  -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
---  require('lspconfig')['<YOUR_LSP_SERVER>'].setup {
---    capabilities = capabilities
---  }
+-- local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+-- -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+-- require('lspconfig')['<YOUR_LSP_SERVER>'].setup {
+--   capabilities = capabilities
+-- }

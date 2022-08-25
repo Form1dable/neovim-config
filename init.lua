@@ -8,3 +8,9 @@ require("statusline")
 require("buffertab")
 require("completion")
 require("indents")
+require("treesitter")
+require("telescope")
+
+
+
+

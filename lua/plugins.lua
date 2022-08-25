@@ -37,11 +37,13 @@ packer.init {
 
 
 
-
 -- Install plugins
 return packer.startup(function(use)
 
+	-- Packer
 	use "wbthomason/packer.nvim"  		-- Have packer manage itself
+
+	-- Essentials
 	use "nvim-lua/popup.nvim" 			-- An implementation of the popup API from vim in Neovim
 	use "nvim-lua/plenary.nvim" 		-- Useful lua function used by lots of plugins
 	use "windwp/nvim-autopairs"			-- Provides bracket autopairing
@@ -51,26 +53,44 @@ return packer.startup(function(use)
 	use "akinsho/bufferline.nvim"		-- Buffers for neovim
 	use "akinsho/toggleterm.nvim"		-- External terminal
 
-		-- cmp plugins
+	-- Indentation
+	use "lukas-reineke/indent-blankline.nvim"
+
+	-- Cmp plugins
 	use "hrsh7th/nvim-cmp" -- The completion plugin
 	use "hrsh7th/cmp-buffer" -- buffer completions
 	use "hrsh7th/cmp-path" -- path completions
 	use "hrsh7th/cmp-cmdline" -- cmdline completions
 	use "saadparwaiz1/cmp_luasnip" -- snippet completions
+	use "hrsh7th/cmp-nvim-lsp"
 
-	-- snippets
-	use "L3MON4D3/LuaSnip" --snippet engine
-	use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
+	-- Snippets
+	use "L3MON4D3/LuaSnip" -- Snippet engine
+	use "rafamadriz/friendly-snippets" -- A bunch of snippets to use
 
+	-- LSP
+	use "neovim/nvim-lspconfig"   -- Enable LSP
+
+	-- Treesitter
+	use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate", }
+
+	-- Telescope
+	use "nvim-telescope/telescope.nvim"
+	use 'nvim-telescope/telescope-media-files.nvim'
 
 	-- Colorschemes
 	use "lunarvim/colorschemes"  		-- Colorscheme collection from chrisatmachine
 	use "franbach/miramare"
-	use "rebelot/kanagawa.nvim"
 	use "sainnhe/gruvbox-material"
-	use "bluz71/vim-moonfly-colors"
 	use "ayu-theme/ayu-vim"
 	use "morhetz/gruvbox"
-	use "lukas-reineke/indent-blankline.nvim"
+    use "wesgibbs/vim-irblack"
+    use "marko-cerovac/material.nvim"
+	use "techtuner/aura-neovim"
+	use "ghifarit53/tokyonight-vim"
+	use "aonemd/kuroi.vim"
+	use "rebelot/kanagawa.nvim"
+	use "RRethy/nvim-base16"
+
 end)
 

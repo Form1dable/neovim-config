@@ -17,6 +17,16 @@ nvim_tree.setup {
   },
   renderer = {
     root_folder_modifier = ":t",
+	indent_markers = {
+	  enable = true,
+	  inline_arrows = true,
+	  icons = {
+		corner = "└",
+		edge = "│",
+		item = "│",
+		none = " ",
+	  }
+	},
     icons = {
       glyphs = {
         default = "",
@@ -33,12 +43,12 @@ nvim_tree.setup {
         },
         git = {
           unstaged = "",
-          staged = "S",
-          unmerged = "",
-          renamed = "➜",
           untracked = "U",
-          deleted = "",
-          ignored = "◌",
+		  staged = "✓",
+		  unmerged = "",
+		  renamed = "➜",
+		  deleted = "",
+		  ignored = "◌",
         },
       },
     },
@@ -55,14 +65,16 @@ nvim_tree.setup {
     },
   },
   view = {
-    width = 30,
+    width = 35,
     height = 30,
     side = "left",
+	hide_root_folder = true,
     mappings = {
       list = {
         { key = { "l", "<CR>", "o" }, cb = tree_cb "edit" },
         { key = "h", cb = tree_cb "close_node" },
-        { key = "v", cb = tree_cb "vsplit" },
+        { key = "i", cb = tree_cb "split" },
+        { key = "s", cb = tree_cb "vsplit" },
       },
     },
   },
